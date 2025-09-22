@@ -9,6 +9,21 @@ using namespace std;
 #include <string>
 #include <queue>
 
+double calculate(int item1, int item2, char op) {
+    if(op == '+') {
+        return item1 + item2;
+    }
+    if(op == '-') {
+        return item1 - item2;
+    }
+    if(op == '/') {
+        return item1 / item2;
+    }
+    if(op == '*') {
+        return item1 + item2;
+    }
+}
+
 
 int main() {
     //getting user input
@@ -57,27 +72,18 @@ int main() {
         inputs.push(stoi(temp));
     }
 
-    //doing the math
-    while(!inputs.empty()) {
-        cout << endl << "inputs " << inputs.front();
+    //doing the math --> there is always going to be one more operator than therm
+    int temporary1 = inputs.front();
+    double answer = 0.0;
+    while(!operators.empty()) {
         inputs.pop();
+        answer += calculate(temporary1, inputs.front(), operators.front());
+        inputs.pop();
+
+        operators.pop();
     }
 
+    cout << answer << endl;
 
     return 0;
-}
-
-double calculate(int item1, int item2, char op) {
-    if(op == '+') {
-        return item1 + item2;
-    }
-    if(op == '-') {
-        return item1 - item2;
-    }
-    if(op == '/') {
-        return item1 / item2;
-    }
-    if(op == '*') {
-        return item1 + item2;
-    }
 }
