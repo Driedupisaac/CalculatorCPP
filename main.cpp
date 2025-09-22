@@ -45,9 +45,22 @@ int main() {
     string temp = "";
 
     //getting the index of the operators
+    //now getting the operators and putting multiplication on/division the queue first,
+    //and keeping track of its location - i've found two seperate loops helps
+
+    //this is for multipication or division
     int i = 0;
     for(char c : input) {
-        if(c == '+' || c == '-' || c == '*' || c == '/') {
+        if(c == '*' || c == '/') {
+            index.push_back(i);
+            operators.push(c);
+        }
+        i++;
+    }
+    //addition and subtraction
+    i = 0;
+    for(char c : input) {
+        if(c == '+' || c == '-') {
             index.push_back(i);
             operators.push(c);
         }
